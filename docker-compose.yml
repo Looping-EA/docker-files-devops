@@ -2,19 +2,39 @@ version: '3'
 
 services:
     database:
-        ports:
-            - "27017:27017"
+        image: mongo
+        restart: always
+        volumes:
+            - mongo-data:/data/db
+        networks:
+            - backendNetwork
 
     backend:
-        build: ./backend-build
+        image: loopingea/backend-looping-ea
         ports:
             - "9090:9090"
         depends_on:
             - database
+        command: npm start
+        networks:
+            - backendNetwork
+            - frontendNetwork
 
     frontend:
-        build: ./frontend-build
+        image: loopingea/frontend-looping-ea
         ports:
             - "8080:8080"
         depends_on:
             - backend
+        networks:
+            - frontendNetwork
+
+networks: 
+    frontendNetwork:
+    
+    backendNetwork:
+        driver: bridge
+
+volumes:
+    mongo-data:
+        driver: local
