@@ -1,16 +1,16 @@
 version: '3'
 
 services:
+    database:
+        ports:
+            - "27017:27017"
+
     backend:
         build: ./backend-build
         ports:
             - "9090:9090"
         depends_on:
             - database
-    
-    database:
-        ports:
-            - "27017:27017"
 
     frontend:
         build: ./frontend-build
