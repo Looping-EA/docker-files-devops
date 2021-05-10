@@ -4,7 +4,7 @@ DevOps repo for backend/frontend/mongo images deployment.
 
 ## Useful commands  
 Pull latest images:    
-`sudo docker compose pull`  
+`sudo docker-compose pull`  
 Restart containers:  
 `sudo docker-compose up -d --remove-orphans`  
 
