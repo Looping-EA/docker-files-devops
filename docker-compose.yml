@@ -12,7 +12,7 @@ services:
     backend:
         image: loopingea/backend-looping-ea
         ports:
-            - "9090:9090"
+            - "9090:8080"
         depends_on:
             - database
         command: npm start
