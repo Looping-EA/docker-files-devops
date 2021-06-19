@@ -6,19 +6,31 @@ services:
         restart: always
         volumes:
             - mongo-data:/data/db
+        networks:
+            - backEndNet
 
     backend:
         image: loopingea/backend-looping-ea
         command: npm start
-        links:
-            - "database"
+        depends_on:
+            - database
+        networks:
+            - backEndNet
+            - frontEndNet
 
     frontend:
         image: loopingea/frontend-looping-ea
         ports:
             - "1200:80"
-        links:
-            - "backend"
+        networks:
+            - frontEndNet
+
+networks:
+    frontEndNet:
+        driver: bridge
+
+    backEndNet:
+        driver: bridge
 
 volumes:
     mongo-data:
