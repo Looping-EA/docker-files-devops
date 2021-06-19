@@ -11,14 +11,14 @@ services:
         image: loopingea/backend-looping-ea
         command: npm start
         links:
-            - database
+            - "database"
 
     frontend:
         image: loopingea/frontend-looping-ea
         ports:
             - "1200:80"
         links:
-            - backend
+            - "backend"
 
 volumes:
     mongo-data:
