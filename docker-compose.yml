@@ -12,6 +12,8 @@ services:
     backend:
         image: loopingea/backend-looping-ea
         command: npm start
+        ports:
+            - "9090:9090"
         depends_on:
             - database
         networks:
@@ -22,6 +24,8 @@ services:
         image: loopingea/frontend-looping-ea
         ports:
             - "1200:80"
+        depends_on:
+            - backend
         networks:
             - frontEndNet
 
