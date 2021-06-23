@@ -9,6 +9,13 @@ services:
         networks:
             - backEndNet
 
+    admin:
+        image: loopingea/adminloopingea
+        depends_on:
+            - backend
+        networks:
+            - adminNet
+
     backend:
         image: loopingea/backend-looping-ea
         command: npm start
@@ -30,6 +37,9 @@ services:
             - frontEndNet
 
 networks:
+    adminNet:
+        driver: bridge
+
     frontEndNet:
         driver: bridge
 
